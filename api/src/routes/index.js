@@ -46,9 +46,15 @@ const getAllDogs = async () => {
 }
 
 router.get('/dogs', async (req, res) => {
+    const name = req.query.name
     let totalDogs = await getAllDogs();
-    res.status(200).send(totalDogs)
+    if(name){
+        let dogName = await totalDogs.filter( el => el.name.includes(name))
+        dogName.length ?
+        res.status(200).send(dogName) :
+        res.status(404).send('nodog');
+    }else {
+        res.status(200).send(totalDogs);
+    }
 })
-
-
 module.exports = router;
