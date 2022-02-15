@@ -60,7 +60,14 @@ router.get('/dogs', async (req, res) => {
     }
 })
 
-// router.get('/dogs?name="')
+router.get('/dogs/:id', async (req, res) => {
+    const id = req.params.id;
+    const allDogs = await getAllDogs();
+    if(id){
+        let dogId = await allDogs.filter((el) => el.id == id);
+        dogId.length ? res.json(dogId) : res.status(404).send('doggy Not Found');
+    }
+})
 
 router.get('/temperament', async (req, res) => {
 
