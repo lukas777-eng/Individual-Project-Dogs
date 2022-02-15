@@ -17,13 +17,12 @@ module.exports = (sequelize) => {
     },
 
     height: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
 
     weight: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
-
 
   });
 };

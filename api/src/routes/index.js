@@ -18,8 +18,8 @@ const getApiInfo = async () => {
         return {
             id: el.id,
             name: el.name,
-            height: el.height,
-            weight: el.weight,
+            height: el.height.metric,
+            weight: el.weight.metric,
         };
     });
     return apiInfo;
@@ -60,6 +60,8 @@ router.get('/dogs', async (req, res) => {
     }
 })
 
+// router.get('/dogs?name="')
+
 router.get('/temperament', async (req, res) => {
 
     const temperamentApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
@@ -76,4 +78,29 @@ router.get('/temperament', async (req, res) => {
     res.send(dogTemperament)
 
 })
+
+router.post('/dog', async(req, res) => {
+    const {
+        name,
+        height,
+        weight,
+        temperament,
+    }= req.body
+
+    const dogCreated = await Dog.create({
+        name,
+        height,
+        weight,
+    })
+
+    const temperamentDb = await Temperament.findAll({
+        where: {
+            name: temperament
+        }
+    })
+
+    dogCreated.addTemperament(temperamentDb)
+    res.send('Perro creado con éxito')
+})
+
 module.exports = router;
