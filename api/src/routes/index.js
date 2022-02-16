@@ -20,6 +20,7 @@ const getApiInfo = async () => {
             name: el.name,
             height: el.height.metric,
             weight: el.weight.metric,
+            image: el.image.url,
         };
     });
     return apiInfo;
@@ -91,6 +92,7 @@ router.post('/dog', async(req, res) => {
         name,
         height,
         weight,
+        image,
         temperament,
     }= req.body
 
@@ -98,6 +100,7 @@ router.post('/dog', async(req, res) => {
         name,
         height,
         weight,
+        image,
     })
 
     const temperamentDb = await Temperament.findAll({

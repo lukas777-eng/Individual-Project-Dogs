@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function landinDog(){
+export default function LandinDog(){
     return (
         <div>
             <h1> Welcome to the Dogpage</h1>

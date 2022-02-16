@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDogs } from '../actions';
 import { Link } from 'react-router-dom';
-import dogCard from '../components/dogCard';
+import DogCard from '../components/dogCard.jsx';
 
-export default function dogHome(){
+export default function DogHome(){
     const dispatch = useDispatch()
     const allDogs = useSelector ((state) => state.dogs)
 
     useEffect(() => {
         dispatch(getDogs())
-    },[]);
+    },[dispatch]);
 
     function handleClick(e){
         e.preventDefault();
@@ -38,11 +38,15 @@ export default function dogHome(){
                     <option value='api'>Existent breeds</option>
                     <option value='created'>Created breeds</option>
                 </select>
-                {
-                    allDogs && allDogs.map( el => {
-                        <dogCard image={el.img} name={el.name} temperament={el.temperament} weight={el.weight} />
-                    })
-                }
+                {allDogs?.map( (el) => {
+                    return(
+                        <Fragment>
+                           <Link to={"/dogHome/" + el.id}>
+                              <DogCard image={el.img} name={el.name} temperament={el.temperament} weight={el.weight} />
+                           </Link>
+                        </Fragment>
+                    );
+                    })}
             </div>
         </div>
     )
