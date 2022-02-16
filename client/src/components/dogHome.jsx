@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDogs } from '../actions';
 import { Link } from 'react-router-dom';
 import DogCard from '../components/dogCard.jsx';
+import Paginated from './dogPaginated';
 
 export default function DogHome(){
     const dispatch = useDispatch()
@@ -47,7 +48,8 @@ export default function DogHome(){
                     <option value='api'>Existent breeds</option>
                     <option value='created'>Created breeds</option>
                 </select>
-                {allDogs?.map( (el) => {
+                <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
+                {currentDogs?.map( (el) => {
                     return(
                         <Fragment>
                            <Link to={"/DogHome/" + el.id}>
