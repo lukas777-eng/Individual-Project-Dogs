@@ -8,6 +8,15 @@ import DogCard from '../components/dogCard.jsx';
 export default function DogHome(){
     const dispatch = useDispatch()
     const allDogs = useSelector ((state) => state.dogs)
+    const [currentDogPage, setCurrentDogPage] = useState(1)
+    const [dogsPerPage, setDogsPerPage] = useState(8)
+    const indexOfLastDog = currentDogPage * dogsPerPage
+    const indexOfFirstDog = indexOfLastDog - dogsPerPage
+    const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
+
+    const paginated = (pageNumber) => {
+        setCurrentDogPage(pageNumber)
+    }
 
     useEffect(() => {
         dispatch(getDogs())
