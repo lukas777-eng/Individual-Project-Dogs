@@ -41,8 +41,8 @@ export default function DogHome(){
                 {allDogs?.map( (el) => {
                     return(
                         <Fragment>
-                           <Link to={"/dogHome/" + el.id}>
-                              <DogCard image={el.img} name={el.name} temperament={el.temperament} weight={el.weight} />
+                           <Link to={"/DogHome/" + el.id}>
+                              <DogCard image={el.image} name={el.name} temperament={el.temperament} weight={el.weight} key={el.id} />
                            </Link>
                         </Fragment>
                     );
