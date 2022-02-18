@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDogs } from '../actions';
+import { GetDogs, FilterByName, FilterByWeight, FilterCreated } from '../actions';
 import { Link } from 'react-router-dom';
 import DogCard from '../components/dogCard.jsx';
 import Paginated from './dogPaginated';
@@ -14,42 +14,66 @@ export default function DogHome(){
     const indexOfLastDog = currentDogPage * dogsPerPage
     const indexOfFirstDog = indexOfLastDog - dogsPerPage
     const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
+    const [order, setOrder] = useState('');
 
     const paginated = (pageNumber) => {
         setCurrentDogPage(pageNumber)
     }
 
     useEffect(() => {
-        dispatch(getDogs())
+        dispatch(GetDogs())
     },[dispatch]);
 
     function handleClick(e){
         e.preventDefault();
-        dispatch(getDogs());
+        dispatch(GetDogs());
     }
+
+    function handleFilterByName(e) {
+        e.preventDefault();
+        dispatch(FilterByName(e.target.value));
+        setCurrentDogPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+    }
+
+    function handleFilterByWeight(e) {
+        e.preventDefault();
+        dispatch(FilterByWeight(e.target.value));
+        setCurrentDogPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+    }
+
+    function handleFilterCreated(e) {
+        dispatch(FilterCreated(e.target.value))
+    }
+
+
     return (
         <div>
             <Link to="/dogs">create doggy</Link>
             <h1> doggy</h1>
             <button onClick={e => {handleClick(e)}}> reload dogs</button>
             <div>
-                <select>
-                    <option value='selected'>sortByName</option>
+                <select onChange={e => handleFilterByName(e)}>
+                    <option value='default'>sortByName</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
                 </select>
-                <select>
-                    <option value='selected'>SortByWeight</option>
+                <select onChange={e => handleFilterByWeight(e)} >
+                    <option value='default'>SortByWeight</option>
                     <option value='asc'>Lighter to heavier</option>
                     <option value='desc'>Heavier to lighter</option>
                 </select>
-                <select>
+                <select onChange={e => handleFilterCreated(e)}>
                     <option value='all'>All breeds</option>
                     <option value='api'>Existent breeds</option>
                     <option value='created'>Created breeds</option>
                 </select>
+                <select  >
+                    <option >All temperaments</option>
+                </select>
                 <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
-                {currentDogs?.map( (el) => {
+                {currentDogs && currentDogs?.map( (el) => {
                     return(
                         <Fragment>
                            <Link to={"/DogHome/" + el.id}>

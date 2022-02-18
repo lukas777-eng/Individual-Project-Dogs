@@ -55,7 +55,7 @@ router.get('/dogs', async (req, res) => {
         let dogName = await totalDogs.filter( el => el.name.toLowerCase().includes(name.toLowerCase()))
         dogName.length ?
         res.status(200).send(dogName) :
-        res.status(404).send('nodog');
+        res.status(404).send('Doggy Not Found');
     }else {
         res.status(200).send(totalDogs);
     }
@@ -66,7 +66,7 @@ router.get('/dogs/:id', async (req, res) => {
     const allDogs = await getAllDogs();
     if(id){
         let dogId = await allDogs.filter((el) => el.id == id);
-        dogId.length ? res.json(dogId) : res.status(404).send('doggy Not Found');
+        dogId.length ? res.json(dogId) : res.status(404).send('Doggy Not Found');
     }
 })
 
@@ -110,7 +110,7 @@ router.post('/dog', async(req, res) => {
     })
 
     dogCreated.addTemperament(temperamentDb)
-    res.send('Perro creado con éxito')
+    res.send('Successfull Created Doggy')
 })
 
 module.exports = router;
