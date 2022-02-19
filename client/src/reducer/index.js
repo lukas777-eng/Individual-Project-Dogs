@@ -16,19 +16,19 @@ function rootReducer(state = initialState, action){
         case 'FILTER_BY_NAME':
             const filterName = action.payload === 'asc' ?
             state.dogs.sort(function (a, b) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                if (a.name > b.name) {
                     return 1;
                 }
-                if (b.name.toLowerCase() > a.name.toLowerCase()) {
+                if (b.name > a.name) {
                     return -1;
                 }
                 return 0
             }) :
             state.dogs.sort(function (a, b) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                if (a.name > b.name) {
                     return -1;
                 }
-                if (b.name.toLowerCase() > a.name.toLowerCase()) {
+                if (b.name > a.name) {
                     return 1;
                 }
                 return 0;
@@ -58,6 +58,13 @@ function rootReducer(state = initialState, action){
                 ...state,
                 dogs: createdFilter
             }
+
+        case 'GET_DOG_NAME':
+            return {
+                ...state,
+                dogs: action.payload
+            }
+
             default:
                 return state;
     }

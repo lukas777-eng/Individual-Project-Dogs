@@ -5,6 +5,7 @@ import { GetDogs, FilterByName, FilterByWeight, FilterCreated } from '../actions
 import { Link } from 'react-router-dom';
 import DogCard from '../components/dogCard.jsx';
 import Paginated from './dogPaginated';
+import SearchBar from './searchDogBar';
 
 export default function DogHome(){
     const dispatch = useDispatch()
@@ -73,6 +74,7 @@ export default function DogHome(){
                     <option >All temperaments</option>
                 </select>
                 <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
+                <SearchBar/>
                 {currentDogs && currentDogs?.map( (el) => {
                     return(
                         <Fragment>

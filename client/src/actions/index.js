@@ -59,5 +59,19 @@ export function FilterCreated(payload) {
         payload,
     }
 }
+////devuelve el name en la barra de busqueda
+export function getDogName(name) {
+    return async function (dispatch){
+        try{
+            var json = await axios.get(`http://localhost:3001/dogs?name=` + name);
+            return dispatch({
+                type: 'GET_DOG_NAME',
+                payload: json.data
+            })
+        } catch(error){
+            console.name(error)
+        }
+    }
+}
 
 
