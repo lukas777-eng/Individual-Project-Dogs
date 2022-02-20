@@ -74,4 +74,12 @@ export function getDogName(name) {
     }
 }
 
+export function postDog(payload){
+    return async function(dispatch){
+        const response = await axios.post(`http://localhost:3001/dogs`, payload);
+        console.log(response);
+        return response;
+    }
+}
+
 
