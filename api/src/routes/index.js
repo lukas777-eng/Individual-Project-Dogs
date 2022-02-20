@@ -3,7 +3,6 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
 const { Dog, Temperament } = require('../db');
-
 const router = Router();
 const { API_KEY } = process.env;
 
@@ -20,6 +19,8 @@ const getApiInfo = async () => {
             name: el.name,
             height: el.height.metric,
             weight: el.weight.metric,
+            life_span: el.life_span,
+            temperament: el.temperament ? el.temperament : null,
             image: el.image.url,
         };
     });
@@ -52,7 +53,7 @@ router.get('/dogs', async (req, res) => {
     const name = req.query.name
     let totalDogs = await getAllDogs();
     if(name){
-        let dogName = await totalDogs.filter( el => el.name.toLowerCase().includes(name.toLowerCase()))
+        let dogName = await totalDogs.filter( el => el.name.toLowerCase().includes(name.toLowerCase()));
         dogName.length ?
         res.status(200).send(dogName) :
         res.status(404).send('Doggy Not Found');
@@ -65,21 +66,21 @@ router.get('/dogs/:id', async (req, res) => {
     const id = req.params.id;
     const allDogs = await getAllDogs();
     if(id){
-        let dogId = await allDogs.filter((el) => el.id == id);
+        let dogId = await allDogs.filter(el => el.id == id);
         dogId.length ? res.json(dogId) : res.status(404).send('Doggy Not Found');
     }
 })
 
 router.get('/temperament', async (req, res) => {
 
-    const temperamentApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const temperamentApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
 
     const temperament = temperamentApi.data.map(el => el.temperament).join(", ").split(", ")
 
 
-    temperament.forEach(el=> {
+    await temperament.forEach( el => {
         Temperament.findOrCreate ({
-            where:{name:el}
+            where: { name:el }
         })
     });
     const dogTemperament = await Temperament.findAll();
@@ -87,11 +88,12 @@ router.get('/temperament', async (req, res) => {
 
 })
 
-router.post('/dog', async(req, res) => {
+router.post('/dog', async (req, res) => {
     const {
         name,
         height,
         weight,
+        life_span,
         image,
         temperament,
     }= req.body
@@ -100,14 +102,15 @@ router.post('/dog', async(req, res) => {
         name,
         height,
         weight,
+        life_span: life_span + 'years',
         image,
     })
 
     const temperamentDb = await Temperament.findAll({
         where: {
-            name: temperament
+            name: temperament,
         }
-    })
+    });
 
     dogCreated.addTemperament(temperamentDb)
     res.send('Successfull Created Doggy')

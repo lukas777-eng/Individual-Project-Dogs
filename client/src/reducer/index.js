@@ -1,6 +1,8 @@
 const initialState = {
     dogs : [],
+    detail: [],
     temperaments: [],
+    allDogs: [],
 }
 
 
@@ -57,13 +59,13 @@ function rootReducer(state = initialState, action){
             const createdFilter = action.payload === 'created'? state.allDogs.filter(el => el.createdInDb) : state.allDogs.filter(el => !el.createdInDb)
             return {
                 ...state,
-                dogs: createdFilter
+                dogs: createdFilter,
             }
 
         case 'GET_DOG_NAME':
             return {
                 ...state,
-                dogs: action.payload
+                dogs: action.payload,
             }
 
         case 'POST_DOG':
@@ -74,8 +76,30 @@ function rootReducer(state = initialState, action){
         case 'GET_TEMPERAMENTS':
             return {
                 ...state,
-                temperaments: action.payload
+                temperaments: action.payload,
             }
+
+        case 'GET_DETAIL':
+            return {
+                ...state,
+                detail: action.payload,
+            }
+
+        case 'FILTER_BY_TEMPERAMENT':
+
+            const allDog = state.allDogs; // Al usar state.allDogs en lugar de state.dogs, cada vez que aplique un filtro, state.dogs va a cambiar, pero voy a seguir teniendo guardados todos los perros en mi state.allDogs, entonces voy a poder cambiar de filtro sin tener que volver a cargar la página.
+            const temperamentFiltered = action.payload === 'all' ? allDog : allDog.filter(el => {
+            if (typeof (el.temperaments) === 'string') return el.temperaments.includes(action.payload);
+            if (Array.isArray(el.temperaments)) {
+            let temps = el.temperaments.map(el => el.name);
+                return temps.includes(action.payload);
+            }
+                return true;
+            });
+                return {
+                    ...state,
+                    dogs: temperamentFiltered,
+                }
 
             default:
                 return state;
