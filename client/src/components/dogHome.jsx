@@ -66,27 +66,27 @@ export default function DogHome(){
 
     return (
         <div>
-            <Link to="/createDog">create doggy</Link>
-            <h1> doggy</h1>
-            <button onClick={e => {handleClick(e)}}> reload dogs</button>
+            <Link to="/createDog">Create Doggy</Link>
+            <h1> Doggy</h1>
+            <button onClick={e => {handleClick(e)}}> Reload Dogs</button>
             <div>
                 <select onChange={e => handleFilterByName(e)}>
-                    <option value='default'>sortByName</option>
-                    <option value='asc'>A-Z</option>
-                    <option value='desc'>Z-A</option>
+                    <option value='default'>Sort by Name</option>
+                    <option value='A-Z'>A-Z</option>
+                    <option value='Z-A'>Z-A</option>
                 </select>
                 <select onChange={e => handleFilterByWeight(e)} >
-                    <option value='default'>SortByWeight</option>
+                    <option value='default'>Sort by Weight</option>
                     <option value='asc'>Lighter to heavier</option>
                     <option value='desc'>Heavier to lighter</option>
                 </select>
                 <select onChange={e => handleFilterCreated(e)}>
-                    <option value='all'>All breeds</option>
-                    <option value='api'>Existent breeds</option>
-                    <option value='created'>Created breeds</option>
+                    <option value='all'>All Dogs</option>
+                    <option value='api'>Existent Dogs</option>
+                    <option value='created'>Created Dogs</option>
                 </select>
                 <select  onChange={(e) => handleFilterTemperaments(e)}>
-                    <option value="all">Todos</option>
+                    <option value="all">All Temperaments</option>
                     {allTemperaments?.map((elem) => (
                     <option value={elem.name} key={elem.id}>{elem.name}</option>
                     ))}

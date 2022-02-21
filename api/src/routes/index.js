@@ -80,7 +80,7 @@ router.get('/temperament', async (req, res) => {
 
     await temperament.forEach( el => {
         Temperament.findOrCreate ({
-            where: { name:el }
+            where: { name: el }
         })
     });
     const dogTemperament = await Temperament.findAll();
@@ -89,21 +89,23 @@ router.get('/temperament', async (req, res) => {
 })
 
 router.post('/dog', async (req, res) => {
-    const {
+    let {
         name,
         height,
         weight,
         life_span,
         image,
+        createdInDb,
         temperament,
     }= req.body
 
-    const dogCreated = await Dog.create({
+    let dogCreated = await Dog.create({
         name,
         height,
         weight,
         life_span: life_span + 'years',
         image,
+        createdInDb,
     })
 
     const temperamentDb = await Temperament.findAll({

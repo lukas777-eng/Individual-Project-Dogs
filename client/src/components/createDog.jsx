@@ -82,7 +82,7 @@ export default function CreateDog(){
 
     return (
         <div>
-            <Link to= '/DogHome'><button>Back</button></Link>
+            <Link to= '/DogHome'><button>Back to Home</button></Link>
             <h1>Create a Dog</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
@@ -101,16 +101,10 @@ export default function CreateDog(){
                     <label> image:</label>
                     <input type="text" value={input.image} name="image" onChange={handleChange}/>
                     <select onChange={e => handleSelect(e)} >
-                        <option value='selected' hidden >Temperaments</option>
-                        {temperament?.sort(function (a, b) {
-                            if (a.name < b.name) return -1;
-                            if (a.name > b.name) return 1;
-                            return 0;
-                        }).map(temp => {
-                            return (
-                                <option value={temp.name} key={temp.id}>{temp.name}</option>
-                            )
-                        })}
+                        <option value='selected' >Temperaments</option>
+                       {temperament?.map((elem) => (
+                    <option value={elem.name} key={elem.id}>{elem.name}</option>
+                    ))}
                     </select>
 
                     {input.temperaments.map(el => {

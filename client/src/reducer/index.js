@@ -17,7 +17,7 @@ function rootReducer(state = initialState, action){
             }
 
         case 'FILTER_BY_NAME':
-            const filterName = action.payload === 'asc' ?
+            const filterName = action.payload === 'A-Z' ?
             state.dogs.sort(function (a, b) {
                 if (a.name > b.name) {
                     return 1;
