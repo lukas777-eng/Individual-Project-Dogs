@@ -87,19 +87,14 @@ function rootReducer(state = initialState, action){
 
         case 'FILTER_BY_TEMPERAMENT':
 
-            const allDog = state.allDogs; // Al usar state.allDogs en lugar de state.dogs, cada vez que aplique un filtro, state.dogs va a cambiar, pero voy a seguir teniendo guardados todos los perros en mi state.allDogs, entonces voy a poder cambiar de filtro sin tener que volver a cargar la página.
-            const temperamentFiltered = action.payload === 'all' ? allDog : allDog.filter(el => {
-            if (typeof (el.temperaments) === 'string') return el.temperaments.includes(action.payload);
-            if (Array.isArray(el.temperaments)) {
-            let temps = el.temperaments.map(el => el.name);
-                return temps.includes(action.payload);
-            }
-                return true;
-            });
-                return {
-                    ...state,
-                    dogs: temperamentFiltered,
-                }
+            let allDog = state.allDogs;
+            let temperamentsFiltered = action.payload === "all"  ? allDog: allDog.filter((elem) =>
+              elem.temperament?.includes(action.payload)
+            );
+              return {
+                   ...state,
+                    dogs: temperamentsFiltered,
+                 };
 
             default:
                 return state;

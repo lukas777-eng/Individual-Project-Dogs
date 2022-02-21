@@ -32,11 +32,13 @@ export default function DogHome(){
 
     function handleClick(e){
         e.preventDefault();
+        setCurrentDogPage(1);
         dispatch(GetDogs());
     }
 
     function handleFilterTemperaments(e) {
-        e.preventDefault();
+        console.log(e.target.value)
+       // e.preventDefault();
         setCurrentDogPage(1);
         dispatch(FilterDogsByTemperament(e.target.value))
     }
@@ -56,6 +58,8 @@ export default function DogHome(){
     }
 
     function handleFilterCreated(e) {
+        e.preventDefault();
+        setCurrentDogPage(1);
         dispatch(FilterCreated(e.target.value))
     }
 
@@ -81,17 +85,11 @@ export default function DogHome(){
                     <option value='api'>Existent breeds</option>
                     <option value='created'>Created breeds</option>
                 </select>
-                <select onChange={e => handleFilterTemperaments(e)}  >
-                    <option key={0} value='all'>All temperaments</option>
-                    {allTemperaments?.sort(function (a, b) {
-                         if (a.name < b.name) return -1;
-                         if (a.name > b.name) return 1;
-                         return 0;
-                      }).map(el => {
-                         return (
-                     <option key={el.id} value={el.name}>{el.name}</option>
-                                )
-                     })}
+                <select  onChange={(e) => handleFilterTemperaments(e)}>
+                    <option value="all">Todos</option>
+                    {allTemperaments?.map((elem) => (
+                    <option value={elem.name} key={elem.id}>{elem.name}</option>
+                    ))}
                 </select>
                 <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
                 <SearchBar/>

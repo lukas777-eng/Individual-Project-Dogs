@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 
-////aca se conecta todo el fron y el backend en 3 lineas de codigo
+////aca se conecta todo el front y el backend
 export function GetDogs(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/dogs", {});
+        var json = await axios.get(`http://localhost:3001/dogs`);
         return dispatch({
             type: 'GET_DOGS',
             payload: json.data
@@ -15,7 +15,7 @@ export function GetDogs(){
 
 export function GetTemperaments() {
     return async function (dispatch) {
-        let json = await axios.get('http://localhost:3001/temperament', {});
+        let json = await axios.get(`http://localhost:3001/temperament`);
         return dispatch({
             type: 'GET_TEMPERAMENTS',
             payload: json.data,
@@ -67,7 +67,7 @@ export function getDogName(name) {
 
 export function postDog(payload){
     return async function(dispatch){
-        const response = await axios.post(`http://localhost:3001/dogs`, payload);
+        const response =  axios.post(`http://localhost:3001/dogs`, payload);
         console.log(response);
         return response;
     }
