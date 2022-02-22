@@ -38,7 +38,7 @@ export default function DogHome(){
 
     function handleFilterTemperaments(e) {
         console.log(e.target.value)
-       // e.preventDefault();
+      //  e.preventDefault();
         setCurrentDogPage(1);
         dispatch(FilterDogsByTemperament(e.target.value))
     }
@@ -66,7 +66,7 @@ export default function DogHome(){
 
     return (
         <div>
-            <Link to="/createDog">Create Doggy</Link>
+            <Link to="/dog">Create Doggy</Link>
             <h1> Doggy</h1>
             <button onClick={e => {handleClick(e)}}> Reload Dogs</button>
             <div>

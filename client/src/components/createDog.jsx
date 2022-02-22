@@ -19,16 +19,17 @@ export default function CreateDog(){
     const history = useHistory();
     const temperament = useSelector((state) => state.temperaments);
     const [errors, setErrors] = useState({});
-    const [input,setInput] = useState({
-        name: '',
-        weight: '',
-        height: '',
-        life_span: '',
-        image: '',
+    const [input, setInput] = useState({
+        name: "",
+        weight: "",
+        height: "",
+        life_span: "",
+        image: "",
         temperaments: [],
     });
 
     function handleChange(e){
+        e.preventDefault();
         setInput({
             ...input,
             [e.target.name] : e.target.value
@@ -46,11 +47,11 @@ export default function CreateDog(){
         dispatch(postDog(input))
         alert("Doggy created successfully")
         setInput({
-            name: '',
-            weight: '',
-            height: '',
-            life_span: '',
-            image: '',
+            name: "",
+            weight: "",
+            height: "",
+            life_span: "",
+            image: "",
             temperaments: [],
         })
         history.push('/DogHome')
@@ -84,7 +85,7 @@ export default function CreateDog(){
         <div>
             <Link to= '/DogHome'><button>Back to Home</button></Link>
             <h1>Create a Dog</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit (e)}>
                 <div>
                     <label>nombre:</label>
                     <input type="text" value={input.name} name="name" onChange={handleChange} />
@@ -93,7 +94,7 @@ export default function CreateDog(){
                     <input type="text" value={input.weight} name="weight" onChange={handleChange} />
                     {errors.weight && ( <p>{errors.weight}</p>)}
                     <label>height:</label>
-                    <input type="text" value={input.height} name="wheight" onChange={handleChange} />
+                    <input type="text" value={input.height} name="height" onChange={handleChange} />
                     {errors.height && ( <p>{errors.height}</p>)}
                     <label>Life-span:</label>
                     <input type="text" value={input.life_span} name="life_span" onChange={handleChange} />

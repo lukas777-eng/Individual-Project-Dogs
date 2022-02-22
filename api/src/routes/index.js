@@ -75,9 +75,9 @@ router.get('/temperament', async (req, res) => {
 
     const temperamentApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
 
-    const temperament = temperamentApi.data.map(el => el.temperament).join(", ").split(", ")
+    const temperament = temperamentApi.data.map(el => el.temperament).join(", ").split(", ").join(", ").split(", ")
 
-
+console.log(temperament)
     await temperament.forEach( el => {
         Temperament.findOrCreate ({
             where: { name: el }
@@ -109,9 +109,6 @@ router.post('/dog', async (req, res) => {
     })
 
     const temperamentDb = await Temperament.findAll({
-        where: {
-            name: temperament,
-        }
     });
 
     dogCreated.addTemperament(temperamentDb)
