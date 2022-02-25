@@ -1,0 +1,31 @@
+body {
+background: url(../img/justin-veenema-NH1d0xX6Ldk-unsplash.jpg) no-repeat 50% 10%;
+background-size: cover;
+}
+
+.div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30rem;
+    padding-right: 40rem;
+
+}
+
+.h1 {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 400%;
+    font-weight: 100;
+}
+
+.button {
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #f9f3f4;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 7px 30px;
+}
+
