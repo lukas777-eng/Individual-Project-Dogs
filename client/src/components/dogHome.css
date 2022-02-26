@@ -1,0 +1,44 @@
+
+
+.dogHome {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+}
+
+.topHome {
+    background-color: grey;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 20px 0px;
+}
+
+.buttonCreate  {
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #47c947;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 0px 30px;
+    height: 60%;
+}
+
+.Filters {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+select {
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 0px 30px;
+    height: 80%;
+    margin: 20px;
+}
