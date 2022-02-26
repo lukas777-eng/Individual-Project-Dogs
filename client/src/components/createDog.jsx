@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { postDog, GetTemperaments } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import './createDog.css';
 
 function validate(input) {
     let errors = {};
@@ -83,45 +84,54 @@ export default function CreateDog(){
 
     return (
         <div>
-            <Link to= '/DogHome'><button>Back to Home</button></Link>
-            <h1>Create a Dog</h1>
+            <div className='buttons'>
+            <Link to= '/DogHome'><button className='buttonCreate'>Back to Home</button></Link>
+            <button className='buttonCreate' type="submit">Create Dog</button>
+            </div>
             <form onSubmit={(e) => handleSubmit (e)}>
-                <div>
-                    <label>nombre:</label>
-                    <input type="text" value={input.name} name="name" onChange={handleChange} />
+                <h1 className='titleCreate'>Create a Dog</h1>
+                <div className="inputs">
+                    <label className='inputTitle'>NAME:
+                    <input className='inputCreate' type="text" value={input.name} name="name" onChange={handleChange} />
                     {errors.name && ( <p>{errors.name}</p>)}
-                    <label>weight:</label>
-                    <input type="text" value={input.weight} name="weight" onChange={handleChange} />
+                    </label>
+                    <label className='inputTitleWeight'>WEIGHT:
+                    <input className='inputCreate' type="text" value={input.weight} name="weight" onChange={handleChange} />
                     {errors.weight && ( <p>{errors.weight}</p>)}
-                    <label>height:</label>
-                    <input type="text" value={input.height} name="height" onChange={handleChange} />
+                    </label>
+                    <label className='inputTitleHeight'>HEIGHT:
+                    <input className='inputCreate' type="text" value={input.height} name="height" onChange={handleChange} />
                     {errors.height && ( <p>{errors.height}</p>)}
-                    <label>Life-span:</label>
-                    <input type="text" value={input.life_span} name="life_span" onChange={handleChange} />
+                    </label>
+                    <label className='inputTitleLife'>LIFE SPAN:
+                    <input  className='inputCreate' type="text" value={input.life_span} name="life_span" onChange={handleChange} />
                     {errors.life_span && ( <p>{errors.life_span}</p>)}
-                    <label> image:</label>
-                    <input type="text" value={input.image} name="image" onChange={handleChange}/>
-                    <select onChange={e => handleSelect(e)} >
-                        <option value='selected' >Temperaments</option>
+                    </label>
+                    <label className='inputTitle'> IMAGE:
+                    <input className='inputCreate' type="text" value={input.image} name="image" onChange={handleChange}/>
+                    </label>
+                    <select className="selectCreate" onChange={e => handleSelect(e)} >
+                        <option value='selected' >TEMPERMENTS</option>
                        {temperament?.map((elem) => (
                     <option value={elem.name} key={elem.id}>{elem.name}</option>
                     ))}
                     </select>
+                   
 
                     {input.temperaments.map(el => {
                         return (
-                            
-                                <ul className='allTemps' key={el}>
-                                    <li>
-                                        <p className='temp'><strong>{el}</strong></p>
+                            <div className='divtemp'>
+                                <ul className='ul' key={el}>
+                                    <li className='allTemps'>
+                                        <p className='temperment'><strong>{el}</strong></p>
                                         <button onClick={() => handleDeleteTemperament(el)} className='x' >X</button>
                                     </li>
                                 </ul>
+                            </div>
                             
                         )
                     })}
                 </div>
-                <button type="submit">Create Dog</button>
             </form>
         </div>
     )

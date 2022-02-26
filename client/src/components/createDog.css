@@ -1,0 +1,134 @@
+.buttons {
+    background-color: grey;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 20px 0px;
+    
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 300px;
+    background: url(../img/jamie-street-DZ3ixpNPt7c-unsplash.jpg) no-repeat 50% 50%;
+    background-size: 30%;
+    background-position-x: left;
+    border-radius: 100px;
+}
+
+
+
+.buttonCreate {
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #47c947;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 0px 30px;
+    height: 100%;
+}
+
+.inputCreate {
+    margin-top: 50px;
+    margin-left: 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 0px 30px;
+    height: 100%;
+    width: 25%;
+}
+
+.selectCreate {
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    padding: 0px 30px;
+    height: 100%;
+    width: 30%;
+    margin-top: 50px;
+    margin-left: 615px;
+    
+}
+
+.titleCreate {
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+}
+
+.inputTitle {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.inputTitleWeight {
+    font-size: 20px;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.inputTitleHeight {
+    font-size: 20px;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.inputTitleLife {
+    font-size: 20px;
+    height: 100%;
+    margin-right: 50px;
+
+}
+
+.allTemps{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: stretch;
+    text-decoration: none;
+    border-radius: 20px;
+    width: 200px;
+}
+
+.temperment {
+    display: flex;
+    flex-direction: row-reverse;
+    text-decoration: white;
+    font-size: 20px;
+
+}
+
+.x {
+    width: 30%;
+    border-radius: 1000px;
+    margin-right: 10px;
+    font-size: 20px;
+    background-color: red;
+}
+
+.ul {
+    width: 15%;
+    display: grid;
+    grid-template-columns: 30% 30% 30% 20%;
+    grid-template-rows: 100%;
+}
+
+.divtemp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+

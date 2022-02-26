@@ -67,7 +67,7 @@ export default function DogHome(){
 
 
     return (
-        <div >
+        <div>
           <div className='topHome'>
 
             <SearchBar/>
