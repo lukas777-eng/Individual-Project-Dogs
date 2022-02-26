@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import DogCard from '../components/dogCard.jsx';
 import Paginated from './dogPaginated';
 import SearchBar from './searchDogBar';
+import './dogHome.css';
+
 
 export default function DogHome(){
     const dispatch = useDispatch();
@@ -65,11 +67,15 @@ export default function DogHome(){
 
 
     return (
-        <div>
-            <Link to="/dog">Create Doggy</Link>
-            <h1> Doggy</h1>
-            <button onClick={e => {handleClick(e)}}> Reload Dogs</button>
-            <div>
+        <div >
+          <div className='topHome'>
+
+            <SearchBar/>
+            <Link to="/dog">
+                <button className='buttonCreate'>Create New Dog</button>
+            </Link>
+            </div>
+          <div className='Filters'>
                 <select onChange={e => handleFilterByName(e)}>
                     <option value='default'>Sort by Name</option>
                     <option value='A-Z'>A-Z</option>
@@ -91,8 +97,8 @@ export default function DogHome(){
                     <option value={elem.name} key={elem.id}>{elem.name}</option>
                     ))}
                 </select>
-                <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
-                <SearchBar/>
+            </div>
+            <div className='dogHome'>
                 {currentDogs && currentDogs?.map( (el) => {
                     return(
                         <Fragment>
@@ -102,7 +108,8 @@ export default function DogHome(){
                         </Fragment>
                     );
                     })}
-            </div>
+             </div>
+             <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
         </div>
     )
 }

@@ -1,13 +1,13 @@
-body {
-background: url(../img/justin-veenema-NH1d0xX6Ldk-unsplash.jpg) no-repeat 50% 10%;
-background-size: cover;
-}
+
 
 .div {
     display: flex;
+    background: url(../img/justin-veenema-NH1d0xX6Ldk-unsplash.jpg) no-repeat 50% 50%;
+    background-size: cover;
     flex-direction: column;
     padding-top: 30rem;
     padding-right: 40rem;
+    height: 70vh;
 
 }
 
