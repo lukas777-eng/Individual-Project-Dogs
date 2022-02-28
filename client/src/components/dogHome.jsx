@@ -12,7 +12,7 @@ import './dogHome.css';
 export default function DogHome(){
     const dispatch = useDispatch();
     const allDogs = useSelector ((state) => state.dogs);
-    const allTemperaments = useSelector((state) => state.temperaments);
+    const allTemperaments = useSelector((state) => state.temperament);
     const [currentDogPage, setCurrentDogPage] = useState(1);
     const [dogsPerPage, setDogsPerPage] = useState(8);
     const indexOfLastDog = currentDogPage * dogsPerPage;
@@ -40,7 +40,7 @@ export default function DogHome(){
 
     function handleFilterTemperaments(e) {
         console.log(e.target.value)
-      //  e.preventDefault();
+        e.preventDefault();
         setCurrentDogPage(1);
         dispatch(FilterDogsByTemperament(e.target.value))
     }
@@ -49,14 +49,14 @@ export default function DogHome(){
         e.preventDefault();
         dispatch(FilterByName(e.target.value));
         setCurrentDogPage(1);
-        setOrder(`Ordenado ${e.target.value}`);
+        setOrder(`Ordinate ${e.target.value}`);
     }
 
     function handleFilterByWeight(e) {
         e.preventDefault();
         dispatch(FilterByWeight(e.target.value));
         setCurrentDogPage(1);
-        setOrder(`Ordenado ${e.target.value}`);
+        setOrder(`Ordinate ${e.target.value}`);
     }
 
     function handleFilterCreated(e) {
@@ -65,11 +65,12 @@ export default function DogHome(){
         dispatch(FilterCreated(e.target.value))
     }
 
+   
 
     return (
         <div>
           <div className='topHome'>
-
+          <button className='buttonCreate' onClick={e => handleClick(e)}> Reload dogs </button>
             <SearchBar/>
             <Link to="/dog">
                 <button className='buttonCreate'>Create New Dog</button>
@@ -99,13 +100,13 @@ export default function DogHome(){
                 </select>
             </div>
             <div className='dogHome'>
-                {currentDogs && currentDogs?.map( (el) => {
+                { currentDogs?.map( (el) => {
                     return(
-                        <Fragment>
+                        <div key={el.id}>
                            <Link to={'/dogs/' + el.id}>
-                              <DogCard image={el.image} name={el.name} temperaments={el.temperaments} weight={el.weight} key={el.id} />
+                              <DogCard image={el.image} name={el.name} temperament={el.temperament? el.temperament: el.temperaments && el.temperaments.map((el) => el.name.concat(" "))} weight={el.weight}  key={el.id} />
                            </Link>
-                        </Fragment>
+                        </div>
                     );
                     })}
              </div>

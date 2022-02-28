@@ -11,7 +11,7 @@ function App() {
     <div className="App">
      <Switch>
        <Route exact path='/' component= {LandingDog}/>
-       <Route path='/DogHome' component= {DogHome}/>
+       <Route exact path='/DogHome' component= {DogHome}/>
        <Route path='/dog' component= {createDog}/>
        <Route path='/dogs/:id' component= {Detail}/>
      </Switch>
