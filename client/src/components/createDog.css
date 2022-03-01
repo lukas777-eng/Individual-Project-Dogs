@@ -1,5 +1,6 @@
 .buttons {
-    background-color: grey;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(169,21,185,1) 50%, rgba(0,212,255,1) 100%);
     display: flex;
     justify-content: space-around;
     padding: 20px 20px 0px;
@@ -23,12 +24,22 @@
     border-radius: 9px;
     text-decoration: none;
     background-color: transparent;
-    color: #47c947;
+    color: white;
     font-family: 'Times New Roman', Times, serif;
     font-size: 150%;
     border: 3px solid;
-    padding: 0px 30px;
-    height: 100%;
+    height: 120%;
+}
+
+.buttonCreate2 {
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: transparent;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    border: 3px solid;
+    height: 60%;
 }
 
 .inputCreate {

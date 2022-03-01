@@ -9,7 +9,6 @@ export default function DogCard({ image, name, weight, temperament, temperaments
             <h3>weight:    {weight}  kg</h3>
             <h3>Temperament: {temperament}</h3>
 
-
         </div>
     )
 }

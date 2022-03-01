@@ -2,6 +2,9 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 100%;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+    
 }
 
 .detailInfo {
@@ -27,10 +30,38 @@
     border-radius: 9px;
     text-decoration: none;
     background-color: transparent;
-    color: #47c947;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
     font-size: 150%;
     border: 3px solid;
     padding: 10px 30px;
     height: 90%;
+    margin-left: 40px;
+}
+
+.backgroundDetail {
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+.ulDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 150%;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.loading{
+    position:absolute;
+    margin-left: 300px;
+    height: 100%;
+    width: 70%;
+    background-image: url('../img/e3575db1b9ca7b7a87b9c415c3fa09ce.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

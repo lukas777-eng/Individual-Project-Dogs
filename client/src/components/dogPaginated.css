@@ -5,6 +5,7 @@
 }
 
 .buttonPaginated {
-    background-color: teal;
+    background-color: indigo;
+    color: white;
     border-radius: 50%;
 }

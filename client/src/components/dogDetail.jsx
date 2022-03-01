@@ -16,7 +16,7 @@ export default function Detail(props){
     const myDog = useSelector((state) => state.detail)
 
     return (
-        <div >
+        <div className='backgroundDetail'>
             {
                 myDog.length > 0 ?
                 <div className='detail'>
@@ -28,21 +28,16 @@ export default function Detail(props){
                     <h2>Weight:{myDog[0].weight}</h2>
                     <h2>Height:{myDog[0].height}</h2>
                     <h2>Life span:{myDog[0].life_span}</h2>
-                    <ul>
-                        
-                    Temperaments:{" "}
-                    {myDog[0]?.temperament
-                      ? myDog[0].temperament.map((elem) => elem + ", ")
-                      : myDog[0]?.temperaments?.map(
-                          (elem) => elem.name + ", "
-                        )}
+                    <ul className='ulDetail'>
+                    Temperaments:
+                    {!myDog[0].createdInDb? myDog[0].temperament + " " : myDog[0].temperaments.map(el => el.name + (" "))}
                     </ul>
 
                     <Link to= '/DogHome'>
                 <button className='back'>Back</button>
             </Link>
                     </div>
-                </div> : <p>Loading..</p>
+                </div> : <p className='loading'></p>
             }
         </div>
     )

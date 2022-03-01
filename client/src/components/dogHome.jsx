@@ -8,7 +8,9 @@ import Paginated from './dogPaginated';
 import SearchBar from './searchDogBar';
 import './dogHome.css';
 
-
+const divStyle = {
+    textDecoration: "none",
+}
 export default function DogHome(){
     const dispatch = useDispatch();
     const allDogs = useSelector ((state) => state.dogs);
@@ -68,12 +70,12 @@ export default function DogHome(){
    
 
     return (
-        <div>
+        <div >
           <div className='topHome'>
-          <button className='buttonCreate' onClick={e => handleClick(e)}> Reload dogs </button>
+          <button className='buttonCreate3' onClick={e => handleClick(e)}> Reload dogs </button>
             <SearchBar/>
-            <Link to="/dog">
-                <button className='buttonCreate'>Create New Dog</button>
+            <Link  to="/dog">
+                <button className='buttonCreate2'>Create New Dog</button>
             </Link>
             </div>
           <div className='Filters'>
@@ -103,7 +105,7 @@ export default function DogHome(){
                 { currentDogs?.map( (el) => {
                     return(
                         <div key={el.id}>
-                           <Link to={'/dogs/' + el.id}>
+                           <Link style={divStyle} to={'/dogs/' + el.id}>
                               <DogCard image={el.image} name={el.name} temperament={el.temperament? el.temperament: el.temperaments && el.temperaments.map((el) => el.name.concat(" "))} weight={el.weight}  key={el.id} />
                            </Link>
                         </div>

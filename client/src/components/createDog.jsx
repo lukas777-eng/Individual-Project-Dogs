@@ -157,7 +157,7 @@ export default function CreateDog(){
                         )
                     })}
                 </div>
-                            <button className='buttonCreate' type="submit">Create Dog</button>
+                            <button className='buttonCreate2' type="submit">Create Dog</button>
 
             </form>
         </div>
