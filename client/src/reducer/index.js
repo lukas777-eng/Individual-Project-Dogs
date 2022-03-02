@@ -6,7 +6,7 @@ import {
     FILTER_BY_NAME,
     FILTER_BY_WEIGHT,
   } from "../actions/index.js";
-  
+
   const initialState = {
     dogs : [],
     detail: [],
