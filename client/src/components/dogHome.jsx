@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetDogs, GetTemperaments, FilterDogsByTemperament, FilterByName, FilterByWeight, FilterCreated } from '../actions';
@@ -41,7 +41,6 @@ export default function DogHome(){
     }
 
     function handleFilterTemperaments(e) {
-        console.log(e.target.value)
         e.preventDefault();
         setCurrentDogPage(1);
         dispatch(FilterDogsByTemperament(e.target.value))
@@ -70,7 +69,7 @@ export default function DogHome(){
    
 
     return (
-        <div >
+        <div className='backgroundAll'>
           <div className='topHome'>
           <button className='buttonCreate3' onClick={e => handleClick(e)}> Reload dogs </button>
             <SearchBar/>
@@ -111,8 +110,10 @@ export default function DogHome(){
                         </div>
                     );
                     })}
+
              </div>
              <Paginated dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginated={paginated} />
+
         </div>
     )
 }

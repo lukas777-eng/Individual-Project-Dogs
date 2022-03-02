@@ -8,7 +8,7 @@ export default function LandinDog(){
         <div className='div'>
             <h1 className='h1'> Welcome to the Dogpage</h1>
             <Link to='/DogHome'>
-                <button className='button'>login</button>
+                <button className='button'>Login</button>
             </Link>
         </div>
     )

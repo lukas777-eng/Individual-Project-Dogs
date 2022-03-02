@@ -16,7 +16,7 @@ export default function Detail(props){
     const myDog = useSelector((state) => state.detail)              // me traigo el estado detail desde el reducer con useSelector
 
     return (
-        <div className='backgroundDetail'>
+        <div className='backDetail' >
             {
                 myDog.length > 0 ?
                 <div className='detail'>

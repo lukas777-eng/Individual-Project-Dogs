@@ -70,7 +70,6 @@ export default function CreateDog(){
 
     function handleSubmit(e){                                                //el handleSubmit lo voy a usar para submitear el formulario
         e.preventDefault();                                                 //e.preventDefault() me permite prevenir el comportamiento por default de un submit (el comportamiento predeterminado) que en este caso es el envío del formulario
-        console.log(input)
         dispatch(postDog(input))                                            //si no salió por ninguna de las validaciones incorrectas, entonces envío el formulario
         alert("Doggy created successfully")
         setInput({                                                         //seteo el input en cero otra vez
@@ -90,7 +89,6 @@ export default function CreateDog(){
                 ...input,
                 temperament: [...input.temperament, e.target.value]
             });
-            console.log(input);
         }
     }
 
@@ -157,7 +155,7 @@ export default function CreateDog(){
                         )
                     })}
                 </div>
-                            <button className='buttonCreate2' type="submit">Create Dog</button>
+                            <button className='buttonCreate5' type="submit">Create Dog</button>
 
             </form>
         </div>

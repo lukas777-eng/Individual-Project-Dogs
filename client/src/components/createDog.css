@@ -1,9 +1,9 @@
 .buttons {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(169,21,185,1) 50%, rgba(0,212,255,1) 100%);
+    background-color: rgb(103, 169, 227);
     display: flex;
     justify-content: space-around;
     padding: 20px 20px 0px;
+    height: 50px;
     
 }
 
@@ -31,15 +31,17 @@
     height: 120%;
 }
 
-.buttonCreate2 {
+.buttonCreate5 {
     border-radius: 9px;
     text-decoration: none;
-    background-color: transparent;
+    background-color: steelblue;
     color: black;
     font-family: 'Times New Roman', Times, serif;
     font-size: 150%;
     border: 3px solid;
-    height: 60%;
+    height: 5rem;
+    width: 10%;
+    margin-top: 50px;
 }
 
 .inputCreate {
@@ -77,6 +79,7 @@
     font-size: 3em;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 100;
+    height: 10px;
 }
 
 .inputTitle {
