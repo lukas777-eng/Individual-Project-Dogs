@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export const GET_DOGS = "GET_DOGS";
+export const GET_TEMPERAMENTS = "GET_ALL_TEMPERAMENTS";
+export const GET_DOG_NAME = "GET_DOG_NAME";
+export const POST_DOG = "POST_DOG";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
+export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
+
 
 ////aca se conecta todo el front y el backend
 export function GetDogs(){
