@@ -23,7 +23,7 @@ export function GetTemperaments() {
     }
 }
 
-export function FilterDogsByTemperament(payload) {
+export function FilterDogsByTemperament(payload) {       //lo que llega en payload es lo que le mando desde el componente, el value del select
     return {
         type: 'FILTER_BY_TEMPERAMENT',
         payload,
@@ -44,17 +44,16 @@ export function FilterByWeight(payload) {
     }
 }
 
-export function FilterCreated(payload) {
+export function FilterCreated(payload) {                  //filtra si son creados o son de la api
     return {
         type: 'FILTER_CREATED',
         payload,
     }
 }
-////devuelve el name en la barra de busqueda
-export function getDogName(name) {
+export function getDogName(name) {                       //acá traigo del back-end los dogs que coincidan con el nombre pasado por query
     return async function (dispatch){
         try{
-            var json = await axios.get(`http://localhost:3001/dogs?name=` + name);
+            var json = await axios.get(`http://localhost:3001/dogs?name=` + name);    //mi ruta del back mas lo que el usuario le pase como nombre en la barra de búsqueda
             return dispatch({
                 type: 'GET_DOG_NAME',
                 payload: json.data
@@ -65,10 +64,10 @@ export function getDogName(name) {
     }
 }
 
-export function postDog(payload){
+export function postDog(payload){                                                        //esto me va a devolver la información de los dogs que se agregan por post
     return async function(dispatch){
-        const response = await axios.post(`http://localhost:3001/dog`, payload);
-        console.log(response);
+        const response = await axios.post(`http://localhost:3001/dog`, payload);         // uso axios.post para disparar la accion de crear un dog
+        console.log(response);                                                            //en esta ruta quiero hacer el post del payload que llega en el front
         return dispatch({
             type: 'POST_DOG',
             payload: response

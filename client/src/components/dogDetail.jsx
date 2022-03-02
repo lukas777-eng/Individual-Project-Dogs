@@ -10,10 +10,10 @@ export default function Detail(props){
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getDetail(props.match.params.id));
+        dispatch(getDetail(props.match.params.id));               //accedo al id pasandole props a mi componente Detail
     }, [dispatch]);
 
-    const myDog = useSelector((state) => state.detail)
+    const myDog = useSelector((state) => state.detail)              // me traigo el estado detail desde el reducer con useSelector
 
     return (
         <div className='backgroundDetail'>

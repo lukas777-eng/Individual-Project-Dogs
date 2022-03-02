@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('dog', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,  //me genera automáticamente un UUIDV4 que es un datatype de Sequelize
+      allowNull: false,                 //no se permite que este campo esté vacío, o sea, es un campo requerido
       primaryKey: true
     },
 
@@ -33,10 +33,12 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN4HJhnJo07reTM0Lta1HoTollHloqsqRUVw&usqp=CAU`,
+                               ////default value para que me traiga una imagen por defecto si no encuentra una
     },
 
-    createdInDb: {
+    createdInDb: {                         //para distinguir entre los que me trae la api y los creados en la base de datos
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,

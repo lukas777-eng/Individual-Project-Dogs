@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import './createDog.css';
 
 function validate(input) {
-    let errors = {};
-    if (!input.name){
-        errors.name = 'Name is require';
+    let errors = {};                                                       //genero un objeto errores
+    if (!input.name){                                                     //input es mi estado local, si en mi estadolocal.name no hay nada, 
+        errors.name = 'Name is require';                                 //entonces en mi objeto.name pongo un string que diga se requiere un nombre
     } else if (input.name.length > 30) {
         errors.name = 'Very Long Name';
     } else if (!input.weight) {
         errors.weight = 'weight is require'
-    }  else if (isNaN(parseInt(input.weight))) {
+    }  else if (isNaN(parseInt(input.weight))) {                           //convierto el peso que me viene en string en un entero para compararlo
         errors.weight = 'Weight should be a number';
     } else if (input.weight < 1) {
         errors.weight = 'Minimum weight required is 1';
@@ -44,36 +44,36 @@ function validate(input) {
 
 export default function CreateDog(){
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useHistory();                                                       // mètodo del router que me redirige a la ruta que yo le diga 
     const allTemperaments = useSelector((state) => state.temperament);
-    const [errors, setErrors] = useState({});
-    const [input, setInput] = useState({
+    const [errors, setErrors] = useState({});                                           //genero un estado local errors y setErrors que va ser un objeto vacío 
+    const [input, setInput] = useState({                                                  //acá me guardo en un estado local los datos del formulario y le paso lo que necesita el post
         name: "",
         weight: "",
         height: "",
         life_span: "",
         image: "",
-        temperament: [],
+        temperament: [],                                                                 //temperament va a ser un arreglo porque quiero poner mas de uno (un string no me serviría)
     });
 
-    function handleChange(e){
+    function handleChange(e){                                                        //todos los inputs del formulario van a necesitar tener la prop handleChange
         e.preventDefault();
-        setInput({
+        setInput({                                                                 //quiero ir guardando las cosas que el usuario escriba en el input en mi estado input
             ...input,
-            [e.target.name] : e.target.value
-        })
-        setErrors(validate({
-            ...input,
+            [e.target.name] : e.target.value                                      //seteame el e.target.name en e.target.value (agregame el e.target.value de lo que esté modificando, el target.name se lo fui pasando en el formulario, si esta modificando el  name, va a tomar el target.value de name, si esta modificando life span, va a tomar el target.value de name='life_span'
+        })                                                                       //a medida que va modificando me va llenando ese estado
+        setErrors(validate({                                                      //seteame mi estado errores, pasándole la función validate de más arriba,
+            ...input,                                                             //con el estado input y el e.target.name en el e.target.value
             [e.target.name]: e.target.value
         }));
     }
 
-    function handleSubmit(e){
-        e.preventDefault();
+    function handleSubmit(e){                                                //el handleSubmit lo voy a usar para submitear el formulario
+        e.preventDefault();                                                 //e.preventDefault() me permite prevenir el comportamiento por default de un submit (el comportamiento predeterminado) que en este caso es el envío del formulario
         console.log(input)
-        dispatch(postDog(input))
+        dispatch(postDog(input))                                            //si no salió por ninguna de las validaciones incorrectas, entonces envío el formulario
         alert("Doggy created successfully")
-        setInput({
+        setInput({                                                         //seteo el input en cero otra vez
             name: "",
             weight: "",
             height: "",
@@ -81,8 +81,8 @@ export default function CreateDog(){
             image: "",
             temperament: [],
         })
-        history.push('/DogHome')
-    }
+        history.push('/DogHome')                                               //cuando termine de hacer esto mandáme al home (porque ya creé mi dog)
+    } 
 
     function handleSelect(e) {
         if (!input.temperament.includes(e.target.value)) {
@@ -95,11 +95,11 @@ export default function CreateDog(){
     }
 
 
-    function handleDeleteTemperament(el) {
+    function handleDeleteTemperament(el) {                                        //      uso el handleDelete para borrar del estado un temp que la persona pueda quitar un temperamento que había elegido antes
         setInput({
             ...input,
-            temperament: input.temperament.filter(temp => temp !== el)
-        })
+            temperament: input.temperament.filter(temp => temp !== el)        //Me devuelve el estado nuevo sin ese elemento que yo clikee
+        }) 
     }
 
 
@@ -138,8 +138,8 @@ export default function CreateDog(){
                     </label>
                     <select className="selectCreate" onChange={handleSelect} >
                         <option value='selected' hidden>TEMPERAMENTS</option>
-                       {allTemperaments?.map((elem) => { return (
-                    <option value={elem.name} key={elem.id}>{elem.name}</option>)}
+                       {allTemperaments?.map((elem) => { return (                            //agarro el estado que me traje con el useSelector
+                    <option value={elem.name} key={elem.id}>{elem.name}</option>)}           //obtengo el temperamento y lo renderizo
                     )}
                     </select>
 

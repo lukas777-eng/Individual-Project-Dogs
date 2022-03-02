@@ -12,22 +12,22 @@ const divStyle = {
     textDecoration: "none",
 }
 export default function DogHome(){
-    const dispatch = useDispatch();
-    const allDogs = useSelector ((state) => state.dogs);
+    const dispatch = useDispatch();                                                 //declaro la const dispatch para despachar mis acciones, con el hook useDispatch
+    const allDogs = useSelector ((state) => state.dogs);                            // este hook es lo mismo que usar el mapStateToProps. Con useSelector traeme en esa constante todo lo que esta en el estado de dogs me trae desde el reducer el estado dogs donde están todos los perros 
     const allTemperaments = useSelector((state) => state.temperament);
-    const [currentDogPage, setCurrentDogPage] = useState(1);
-    const [dogsPerPage, setDogsPerPage] = useState(8);
-    const indexOfLastDog = currentDogPage * dogsPerPage;
-    const indexOfFirstDog = indexOfLastDog - dogsPerPage;
-    const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);
+    const [currentDogPage, setCurrentDogPage] = useState(1);                            //le paso el estado local con la primer página que se renderiza
+    const [dogsPerPage, setDogsPerPage] = useState(8);                                  //cuántos personajes quiero por página
+    const indexOfLastDog = currentDogPage * dogsPerPage;                              //cuando empieza será 8 
+    const indexOfFirstDog = indexOfLastDog - dogsPerPage;                              // 0
+    const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);              //slice toma una porción del arreglo dependiendo lo que le estoy pasando por parámetro
     const [order, setOrder] = useState('');
 
-    const paginated = (pageNumber) => {
-        setCurrentDogPage(pageNumber)
+    const paginated = (pageNumber) => {                                           //acá el paginado va a setear la pagina en el numero de pagina que se vaya clickeando
+        setCurrentDogPage(pageNumber)                                               //cuando setea la página los índices cambian y el slide se va modificando   
     }
 
-    useEffect(() => {
-        dispatch(GetDogs())
+    useEffect(() => {                                                              //con useEffect me traigo del estado los dogs cuando el componente se monta
+        dispatch(GetDogs())                                                         //este dispatch es lo mismo que hacer el mapDispatchToProps, despacho la accion getDogs
     },[dispatch]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function DogHome(){
     function handleClick(e){
         e.preventDefault();
         setCurrentDogPage(1);
-        dispatch(GetDogs());
+        dispatch(GetDogs());                                                     //esto me lo resetea la pagina para que no se buguee, lo que hace es despachar el getDogs
     }
 
     function handleFilterTemperaments(e) {
@@ -61,10 +61,10 @@ export default function DogHome(){
         setOrder(`Ordinate ${e.target.value}`);
     }
 
-    function handleFilterCreated(e) {
-        e.preventDefault();
-        setCurrentDogPage(1);
-        dispatch(FilterCreated(e.target.value))
+    function handleFilterCreated(e) {                                            //declaro una función que es un handle del filter del dog creado o de api
+        e.preventDefault();                                                      //esta funcion es la que paso en el select y cuando (e) se modifique ejecuta esta función
+        setCurrentDogPage(1);                                                     //despacho la acción llamada FilterCreated y accedo al valor de cada una de las opcioneS
+        dispatch(FilterCreated(e.target.value))                                     //de value con el e.target.value - dependiendo de cuál clickea el usuario
     }
 
    
