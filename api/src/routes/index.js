@@ -77,7 +77,6 @@ router.get('/temperament', async (req, res) => {
 
     const temperament = temperamentApi.data.map(el => el.temperament).join(", ").split(", ").join(", ").split(", ")
 
-console.log(temperament)
     await temperament.forEach( el => {                   //para cada uno de ellos entrá al modelo Temperament y hacé un findOrCreate
         Temperament.findOrCreate ({                      // es un método de sequelize usado para chequear si un elemento ya existe en la Db, y si no existe, lo va a crear.
             where: { name: el }                 //creáme estos temperamentos donde el nombre sea este elemento que estoy mapeando
@@ -85,7 +84,6 @@ console.log(temperament)
     });
     const dogTemperament = await Temperament.findAll();
     res.send(dogTemperament)
-
 })
 
 router.post('/dog', async (req, res) => {
