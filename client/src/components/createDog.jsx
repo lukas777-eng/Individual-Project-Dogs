@@ -84,16 +84,18 @@ export default function CreateDog(){
     } 
 
     function handleSelect(e) {
-        if (!input.temperament.includes(e.target.value)) {
+       // if (!input.temperament.includes(e.target.value)) {
             setInput({
                 ...input,
                 temperament: [...input.temperament, e.target.value]
             });
-        }
+            e.target.value = 'default'
+
+      //  }
     }
 
 
-    function handleDeleteTemperament(el) {                                        //      uso el handleDelete para borrar del estado un temp que la persona pueda quitar un temperamento que había elegido antes
+    function handleDeleteTemperament(el) {
         setInput({
             ...input,
             temperament: input.temperament.filter(temp => temp !== el)        //Me devuelve el estado nuevo sin ese elemento que yo clikee
@@ -104,7 +106,7 @@ export default function CreateDog(){
 
     useEffect(() => {
         dispatch(GetTemperaments())
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
@@ -134,8 +136,9 @@ export default function CreateDog(){
                     <input className='inputCreate' type="text" value={input.image} name="image" onChange={(e) => handleChange(e)}/>
                     {errors.image && ( <p>{errors.image}</p>)}
                     </label>
+                    <p>TEMPERAMENTS</p>
                     <select className="selectCreate" onChange={handleSelect} >
-                        <option value='selected' hidden>TEMPERAMENTS</option>
+                        <option value='selected' hidden></option>
                        {allTemperaments?.map((elem) => { return (                            //agarro el estado que me traje con el useSelector
                     <option value={elem.name} key={elem.id}>{elem.name}</option>)}           //obtengo el temperamento y lo renderizo
                     )}

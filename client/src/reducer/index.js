@@ -1,11 +1,4 @@
-import {
-    GET_DOGS,
-    GET_TEMPERAMENTS,
-    GET_DOG_NAME,
-    POST_DOG,
-    FILTER_BY_NAME,
-    FILTER_BY_WEIGHT,
-  } from "../actions/index.js";
+
 
   const initialState = {
     dogs : [],

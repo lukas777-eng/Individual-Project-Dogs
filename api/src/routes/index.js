@@ -80,7 +80,7 @@ router.get('/temperament', async (req, res) => {
 console.log(temperament)
     await temperament.forEach( el => {                   //para cada uno de ellos entrá al modelo Temperament y hacé un findOrCreate
         Temperament.findOrCreate ({                      // es un método de sequelize usado para chequear si un elemento ya existe en la Db, y si no existe, lo va a crear.
-            where: { name: temperament }                 //creáme estos temperamentos donde el nombre sea este elemento que estoy mapeando
+            where: { name: el }                 //creáme estos temperamentos donde el nombre sea este elemento que estoy mapeando
         })
     });
     const dogTemperament = await Temperament.findAll();
