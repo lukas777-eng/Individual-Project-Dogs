@@ -47,10 +47,5 @@
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "dotenv-webpack": "^7.1.0"
-  },
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
   }
 }
