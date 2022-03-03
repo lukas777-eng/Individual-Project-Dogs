@@ -136,13 +136,13 @@ export default function CreateDog(){
                     <input className='inputCreate' type="text" value={input.image} name="image" onChange={(e) => handleChange(e)}/>
                     {errors.image && ( <p>{errors.image}</p>)}
                     </label>
-                    <p>TEMPERAMENTS</p>
-                    <select className="selectCreate" onChange={handleSelect} >
-                        <option value='selected' hidden></option>
+                    <p  className='inputTitle'> temperament</p>
+                    <select className="selectCreate" onChange={handleSelect} >Temperament
                        {allTemperaments?.map((elem) => { return (                            //agarro el estado que me traje con el useSelector
                     <option value={elem.name} key={elem.id}>{elem.name}</option>)}           //obtengo el temperamento y lo renderizo
                     )}
                     </select>
+                    
 
 
                     {input.temperament.map(el => {
