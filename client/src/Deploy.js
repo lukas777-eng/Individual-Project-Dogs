@@ -1,1 +1,1 @@
-const baseURL = "https://dogspi.herokuapp.com/";
+export const baseURL = "https://dogspi.herokuapp.com/";
