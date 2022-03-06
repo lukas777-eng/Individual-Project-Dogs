@@ -84,14 +84,14 @@ export default function CreateDog(){
     } 
 
     function handleSelect(e) {
-       // if (!input.temperament.includes(e.target.value)) {
+        if (!input.temperament.includes(e.target.value)) {
             setInput({
                 ...input,
                 temperament: [...input.temperament, e.target.value]
             });
             e.target.value = 'default'
 
-      //  }
+        }
     }
 
 
